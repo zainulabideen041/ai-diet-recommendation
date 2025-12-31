@@ -89,7 +89,7 @@ const aiSlice = createSlice({
         state.error = action.payload.message || "AI recommendation failed";
       })
       // aiChat cases
-      .addCase(aiChat.pending, (state) => {
+      .addCase(aiChat.pending, (state) => { 
         state.isLoading = true;
         state.error = null;
       })

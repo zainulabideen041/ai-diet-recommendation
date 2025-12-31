@@ -2,7 +2,9 @@ import { useDispatch } from "react-redux";
 import { loginUser, registerUser, verifyMail } from "../../redux/auth-slice";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
+import { GoogleLogin } from "@react-oauth/google";
 import logo from "./assets/aimed.png";
+import axios from "axios";
 import "./login.css";
 
 const Login = () => {
@@ -161,6 +163,22 @@ const Login = () => {
       setAuthError("Login failed. Please try again.");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async (credentialResponse) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:7004/auth/google",
+        { id_token: credentialResponse.credential },
+        { withCredentials: true } // 🔹 allow cookies
+      );
+
+      if (res.success) {
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      console.error("Login failed:", err.response?.data || err.message);
     }
   };
 
@@ -623,6 +641,16 @@ const Login = () => {
           )}
         </button>
       </form>
+
+      <div>
+        {/* GOOGLE LOGIN BTN  */}
+        <GoogleLogin
+          onSuccess={handleGoogleLogin}
+          onError={() => {
+            console.log("Login Failed");
+          }}
+        />
+      </div>
 
       {/* Toggle between login/signup */}
       <div className="text-center">
