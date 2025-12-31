@@ -45,7 +45,7 @@ MONGODB_URI=mongodb://127.0.0.1:27017/diatry
 
 **MongoDB Atlas** (Cloud):
 ```env
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/diatry?retryWrites=true&w=majority
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name?retryWrites=true&w=majority
 ```
 
 **Setup Steps**:
