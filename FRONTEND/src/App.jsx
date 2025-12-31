@@ -14,6 +14,8 @@ const Contact = lazy(() => import("./pages/Contact"));
 const AiChat = lazy(() => import("./pages/Aichat"));
 const Menu = lazy(() => import("./pages/menu"));
 const Home = lazy(() => import("./pages/Home"));
+const Features = lazy(() => import("./pages/Features"));
+const About = lazy(() => import("./pages/About"));
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/about" element={<About />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/menu" element={<Menu />} />
